@@ -42,7 +42,14 @@
 <!-- Your community, and what your classifier sorts posts into. Three or four
      sentences. -->
 
-
+TakeMeter classifies posts and comments from Reddit's r/space community by
+what kind of contribution they make to the conversation. Every post gets one
+of three labels: `reaction` (an emotional or conversational response),
+`hot_take` (a confident claim with no support), or `analysis` (an argument
+backed by a specific, checkable fact). Most threads in the sample argue about
+the same topics, like colonizing Mars, JWST, Artemis/SLS, and whether space
+spending is worth it, so the classifier has to go by how a post argues, not
+what it's about.
 
 ---
 
@@ -54,44 +61,62 @@
      The decision rule is worth a point on its own and it's the thing most
      people leave out. Every taxonomy has a hardest boundary. Name yours. -->
 
-### `Reaction`
+### `reaction`
 
-**Definition:**
-
-**Example 1:**
->
-
-**Example 2:**
->
-
-### `Hot Take`
-
-**Definition:**
+**Definition:** An immediate response to something that just happened (a
+launch, a new image, another commenter's post), expressing a feeling or a
+conversational move rather than arguing a position.
 
 **Example 1:**
->
+> as someone who is seeing the comparison between hubble photos and jwst
+> photos, i am absolutely blown away
 
 **Example 2:**
->
+> I was on James Island and caught it. Cool stuff to even see the boosters
+> fall away.
 
+### `hot_take`
 
-### `Analysis`
-
-**Definition:**
+**Definition:** A confident claim about how things are or should be, with no
+support offered.
 
 **Example 1:**
->
+> The JWST hype is basically NASA trying really hard to burry the fact that
+> they wasted $10 billion for a $1 billion telescope.
 
 **Example 2:**
->
+> Colonizing the most inhospitable spot on the surface of the Earth would be
+> **trivial** in comparison to colonizing any other body in the solar system
+
+
+### `analysis`
+
+**Definition:** Makes an argument backed by a specific, checkable fact, such
+as a number, a measurement, a named mission or study, or a source link.
+
+**Example 1:**
+> Titan has a non-toxic atmosphere with a pressure of 1.45 atm made up of
+> 94.2% nitrogen. It's similar to how earths atmosphere was before life but
+> thicker. It's definitely cold there though.
+
+**Example 2:**
+> We're not going to have an exponential increase in consumption because
+> researchers estimate our population will peak at around 11 billion, at
+> worst: [https://www.nature.com/articles/d41586-021-02522-6](https://www.nature.com/articles/d41586-021-02522-6)
 
 ### The hardest boundary
 
-**Which two labels:**
+**Which two labels:** `hot_take` vs. `analysis`
 
 **The decision rule I used every time:**
 <!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
      if the tone is heated." -->
+
+If the post gives at least one specific fact you could check (a number, a
+measurement, a named mission or study, or a link) **and uses it to support its
+claim**, it's `analysis`, even if the tone is confident or rude. If the claim
+stands on its own, or the only "support" is more opinion ("everyone knows",
+"it's obvious"), it's `hot_take`, however long or detailed the post is.
 
 
 
@@ -102,19 +127,24 @@
 <!-- Where you collected from, how you labelled, your counts, and three hard
      cases. -->
 
-**Where the posts came from:** Kaggle dataset of sample post from reddit r/space
+**Where the posts came from:** A Kaggle dataset of sample posts and comments
+from Reddit's r/space. Blank rows from the export were removed, leaving 199
+labelled posts.
 
 **How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
 Say so plainly — the disclosure is required, not penalised. -->
+TODO: say plainly how the labels were produced (by hand cold, pre-labelled and
+corrected, or carried over from the Kaggle dataset) and whether you read every
+row.
 
 **Counts per label:**
 
 | Label | Count | Share |
 |---|---|---|
-|  Reaction | 69  | 34.67% |
-|  Hot Take| 83 | 41.7% |
-|  Analysis | 47  | 23.61% |
-| **Total** |  199| 100% |
+| `reaction` | 69 | 34.7% |
+| `hot_take` | 83 | 41.7% |
+| `analysis` | 47 | 23.6% |
+| **Total** | 199 | 100% |
 
 **Three hard cases**
 
@@ -122,25 +152,35 @@ Say so plainly — the disclosure is required, not penalised. -->
      been, and what you chose. These are worth more than the easy 190. -->
 
 **1.**
-> *The post:*
+> *The post:* "We either colonize Mars, and further planets, or inevitably go
+> extinct. What's to debate?"
 >
-> *Could have been:*
+> *Could have been:* `reaction` or `hot_take`
 >
-> *I chose, because:*
+> *I chose, because:* `reaction`. TODO: your reason. It's a reply that
+> dismisses the thread, but it also makes a confident claim with no support,
+> which is the `hot_take` definition.
 
 **2.**
-> *The post:*
+> *The post:* "False. There is millions of tons of regolith on the moon. It
+> all contains oxygen if you can process it correctly."
 >
-> *Could have been:*
+> *Could have been:* `reaction` or `analysis`
 >
-> *I chose, because:*
+> *I chose, because:* `reaction`. TODO: your reason. It opens as a curt
+> rebuttal to another commenter, but "regolith contains oxygen" is a
+> checkable fact offered as support.
 
 **3.**
-> *The post:*
+> *The post:* "Massively improving upon Hubble space telescope, JWST has
+> provided to be more useful in detecting intracluster light between
+> galaxies"
 >
-> *Could have been:*
+> *Could have been:* `hot_take` or `analysis`
 >
-> *I chose, because:*
+> *I chose, because:* `hot_take`. TODO: your reason. It names a specific
+> capability (intracluster light), but the claim isn't backed up by anything
+> that could be checked.
 
 ---
 
@@ -184,9 +224,9 @@ of next unit's variance. -->
 
 **Moment 1**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* Clean up the labels data file which had extra lines and a non-conforming presentation format
+- *What came back:* A clean dataset that was acceptable for training
+- *What I changed:* Nothing
 
 **Moment 2**
 
