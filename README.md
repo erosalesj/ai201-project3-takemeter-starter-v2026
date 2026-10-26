@@ -54,7 +54,7 @@
      The decision rule is worth a point on its own and it's the thing most
      people leave out. Every taxonomy has a hardest boundary. Name yours. -->
 
-### `label_one`
+### `Reaction`
 
 **Definition:**
 
@@ -64,7 +64,18 @@
 **Example 2:**
 >
 
-### `label_two`
+### `Hot Take`
+
+**Definition:**
+
+**Example 1:**
+>
+
+**Example 2:**
+>
+
+
+### `Analysis`
 
 **Definition:**
 
@@ -91,7 +102,7 @@
 <!-- Where you collected from, how you labelled, your counts, and three hard
      cases. -->
 
-**Where the posts came from:**
+**Where the posts came from:** Kaggle dataset of sample post from reddit r/space
 
 **How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
 Say so plainly — the disclosure is required, not penalised. -->
@@ -100,10 +111,10 @@ Say so plainly — the disclosure is required, not penalised. -->
 
 | Label | Count | Share |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+|  Reaction | 69  | 34.67% |
+|  Hot Take| 83 | 41.7% |
+|  Analysis | 47  | 23.61% |
+| **Total** |  199| 100% |
 
 **Three hard cases**
 
@@ -137,7 +148,18 @@ Say so plainly — the disclosure is required, not penalised. -->
 
 <!-- Your starting model, your settings, and anything you changed and why. -->
 
-**Base model:**
+**Base model:** 
+
+device: cpu  (CPU)
+torch:  2.14.1+cu130
+
+⚠️  WRITE THIS DOWN. Your results depend on it.
+
+Two people running this notebook on the same data with the same seed can
+get different numbers, because different hardware does the arithmetic in
+a slightly different order. That is not a bug and it is not one of you
+being wrong — it is a real property of the thing you are building, and
+unit 6 asks you to report it alongside your three seeds.
 
 **Settings:** <!-- epochs, learning rate, batch size, seed -->
 
